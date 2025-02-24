@@ -6,6 +6,7 @@ public class CancelButton : MonoBehaviour
 {
     public void OnClick()
     {
-        Destroy(GameObject.Find("BuildMenu(Clone)"));
+        Buildable b = GetComponentInParent<Buildable>();
+        b.HideMenu();
     }
 }

@@ -8,6 +8,27 @@ public class Buildable : MonoBehaviour
     public Material HighlightMaterial;
     public GameObject BuildMenu;
 
+    private GameObject Menu;
+    private bool MenuShowing = false;
+
+    public void ShowMenu()
+    {
+        if (!MenuShowing)
+        {
+            Menu = Instantiate(BuildMenu, transform);
+            MenuShowing = true;
+        }
+    }
+
+    public void HideMenu()
+    {
+        if (Menu != null)
+        {
+            Destroy(Menu);
+        }
+        MenuShowing = false;
+    }
+
     public void OnMouseOver()
     {
         gameObject.GetComponent<MeshRenderer>().material = HighlightMaterial;
@@ -21,6 +42,6 @@ public class Buildable : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Instantiate(BuildMenu, transform);
+        ShowMenu();
     }
 }

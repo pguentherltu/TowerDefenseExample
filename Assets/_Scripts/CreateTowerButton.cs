@@ -11,6 +11,9 @@ public class CreateTowerButton : MonoBehaviour
         Transform tile = GameObject.Find("BuildMenu(Clone)").transform.parent;
         Debug.Log($"Creating tower at {tile.position}, tile name {tile.name}");
         Instantiate(TowerPrefab, tile.position, tile.rotation, null);
+
         //destroy the menu
+        Buildable b = GetComponentInParent<Buildable>();
+        b.HideMenu();
     }
 }

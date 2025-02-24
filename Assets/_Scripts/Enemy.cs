@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentDestination >= Waypoints.Length) return;
+
         transform.position = Vector3.MoveTowards(transform.position, Waypoints[currentDestination].position, Speed * Time.deltaTime);
         transform.LookAt(Waypoints[currentDestination].position);
 
