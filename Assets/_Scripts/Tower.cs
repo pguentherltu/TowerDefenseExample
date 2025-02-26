@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public float Range = 5.0f;
 
     private Path LevelPath;
+    private float currentEnemyDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -32,21 +33,23 @@ public class Tower : MonoBehaviour
             {
                 if (Target == null) { 
                     Target = enemy;
+                    currentEnemyDistance = LevelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
                     continue; // move on to next iteration
                 }
 
                 if (LevelPath.GetDistanceRemaining(enemy.transform.position, enemy.currentDestination)
-                    < LevelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination))
+                    < currentEnemyDistance)
                 {
                     Target = enemy;
+                    currentEnemyDistance = LevelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
                 }
             }
         }
-        Turret.transform.LookAt(Target.transform.position);
 
         //fire if target acquired
         if (Target != null)
         {
+            Turret.transform.LookAt(Target.transform.position);
             Debug.Log("Bang!");
             //fire!
         }
