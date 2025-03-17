@@ -8,13 +8,13 @@ public class Tower : MonoBehaviour
     public Enemy Target;
     public float Range = 5.0f;
 
-    private Path LevelPath;
+    private LevelPath levelPath;
     private float currentEnemyDistance;
 
     // Start is called before the first frame update
     void Start()
     {
-        LevelPath = GameObject.Find("Path").GetComponent<Path>();
+        levelPath = GameObject.Find("Path").GetComponent<LevelPath>();
     }
 
     // Update is called once per frame
@@ -33,15 +33,15 @@ public class Tower : MonoBehaviour
             {
                 if (Target == null) { 
                     Target = enemy;
-                    currentEnemyDistance = LevelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
+                    currentEnemyDistance = levelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
                     continue; // move on to next iteration
                 }
 
-                if (LevelPath.GetDistanceRemaining(enemy.transform.position, enemy.currentDestination)
+                if (levelPath.GetDistanceRemaining(enemy.transform.position, enemy.currentDestination)
                     < currentEnemyDistance)
                 {
                     Target = enemy;
-                    currentEnemyDistance = LevelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
+                    currentEnemyDistance = levelPath.GetDistanceRemaining(Target.transform.position, Target.currentDestination);
                 }
             }
         }

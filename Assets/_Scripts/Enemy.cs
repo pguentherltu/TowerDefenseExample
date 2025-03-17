@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Path MyPath;
+    public LevelPath MyPath;
     public int currentDestination;
     public float Speed = 2;
     public float WaypointAcceptableError = 0.01f;
@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         currentDestination = 0;
-        MyPath = GameObject.Find("Path").GetComponent<Path>();
+        MyPath = GameObject.Find("Path").GetComponent<LevelPath>();
     }
 
     // Update is called once per frame
